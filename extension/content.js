@@ -1,5 +1,8 @@
 console.log("🚀 DSA Companion Loaded");
 
+/**
+ * Extract problem details from HackerRank page
+ */
 function getProblemData() {
     const titleElement = document.querySelector("h1");
 
@@ -15,14 +18,65 @@ function getProblemData() {
     };
 }
 
-const currentUrl = window.location.href;
+/**
+ * Save problem to Chrome local storage
+ */
+function saveProblem(problem) {
+    chrome.storage.local.get(
+        ["problems"],
+        (data) => {
 
-if (currentUrl.includes("/challenges/")) {
+            const problems = data.problems || [];
 
-    console.log("✅ HackerRank Challenge Detected");
+            const alreadyExists = problems.some(
+                (p) => p.url === problem.url
+            );
 
-    const problem = getProblemData();
+            if (!alreadyExists) {
 
-    console.log("Problem Details:");
-    console.log(problem);
+                const problemToSave = {
+                    ...problem,
+                    savedAt: new Date().toISOString()
+                };
+
+                problems.push(problemToSave);
+
+                chrome.storage.local.set(
+                    { problems },
+                    () => {
+                        console.log("✅ Problem Saved");
+                        console.log(problemToSave);
+                    }
+                );
+
+            } else {
+
+                console.log("⚠️ Problem Already Saved");
+            }
+        }
+    );
 }
+
+/**
+ * Initialize tracker
+ */
+function init() {
+
+    const currentUrl = window.location.href;
+
+    console.log("Current URL:", currentUrl);
+
+    if (currentUrl.includes("/challenges/")) {
+
+        console.log("✅ HackerRank Challenge Detected");
+
+        const problem = getProblemData();
+
+        console.log("Problem Details:");
+        console.log(problem);
+
+        saveProblem(problem);
+    }
+}
+
+init();
