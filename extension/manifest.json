@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "DSA Companion",
+  "version": "1.0.0",
+  "description": "Track coding problems solved across platforms",
+
+  "permissions": [
+    "storage"
+  ],
+
+  "host_permissions": [
+    "https://www.hackerrank.com/*"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.hackerrank.com/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}
