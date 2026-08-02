@@ -10,7 +10,8 @@ function getProblemData() {
         ? titleElement.innerText.trim()
         : "Unknown Problem";
 
-    const url = window.location.href;
+    const url = window.location.origin +
+            window.location.pathname;
 
     return {
         title,
@@ -22,6 +23,7 @@ function getProblemData() {
  * Save problem to Chrome local storage
  */
 function saveProblem(problem) {
+
     chrome.storage.local.get(
         ["problems"],
         (data) => {
@@ -58,7 +60,7 @@ function saveProblem(problem) {
 }
 
 /**
- * Initialize tracker
+ * Initialize page detection
  */
 function init() {
 
@@ -74,9 +76,49 @@ function init() {
 
         console.log("Problem Details:");
         console.log(problem);
-
-        saveProblem(problem);
     }
 }
 
+/**
+ * Watch for successful submissions
+ */
+function startSubmissionWatcher() {
+
+    let alreadyDetected = false;
+
+    const observer = new MutationObserver(() => {
+
+        if (alreadyDetected) {
+            return;
+        }
+
+        const successHeading =
+            document.querySelector("h6.congrats-heading");
+
+        if (successHeading) {
+
+            alreadyDetected = true;
+
+            console.log("🎉 Challenge Solved!");
+
+            const problem = getProblemData();
+
+            saveProblem(problem);
+
+            observer.disconnect();
+        }
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+    console.log("👀 Submission Watcher Started");
+}
+
+/**
+ * Run extension
+ */
 init();
+startSubmissionWatcher();
