@@ -30,5 +30,15 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
         }
     );
+    document.getElementById("clearBtn")
+    .addEventListener("click", () => {
 
+        chrome.storage.local.clear(() => {
+
+            console.log("Storage Cleared");
+
+            location.reload();
+        });
+
+    });
 });
