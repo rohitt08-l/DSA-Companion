@@ -12,33 +12,45 @@ document.addEventListener("DOMContentLoaded", () => {
             const latestDiv =
                 document.getElementById("latest");
 
-            if (problems.length === 0) {
+            if (problems.length > 0) {
 
-                latestDiv.innerHTML =
-                    "No problems tracked yet.";
+                const latest =
+                    problems[problems.length - 1];
 
-                return;
+                latestDiv.innerHTML = `
+                    <strong>Latest</strong>
+                    <br>
+                    ${latest.title}
+                    <br><br>
+                `;
             }
 
-            const latest =
-                problems[problems.length - 1];
+            const analytics = {};
 
-            latestDiv.innerHTML = `
-                <strong>Latest Problem</strong>
-                <br><br>
-                ${latest.title}
-            `;
+            problems.forEach(problem => {
+
+                const track =
+                    problem.track || "Unknown";
+
+                analytics[track] =
+                    (analytics[track] || 0) + 1;
+            });
+
+            let html =
+                "<strong>Track Breakdown</strong><br><br>";
+
+            Object.entries(analytics)
+                .forEach(([track, count]) => {
+
+                    html += `
+                        ${track}: ${count}<br>
+                    `;
+                });
+
+            document.getElementById(
+                "analytics"
+            ).innerHTML = html;
+
         }
     );
-    document.getElementById("clearBtn")
-    .addEventListener("click", () => {
-
-        chrome.storage.local.clear(() => {
-
-            console.log("Storage Cleared");
-
-            location.reload();
-        });
-
-    });
 });
