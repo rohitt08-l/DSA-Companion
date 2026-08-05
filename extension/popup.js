@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("count").innerText =
                 problems.length;
 
+            // Latest Problem
             const latestDiv =
                 document.getElementById("latest");
 
@@ -18,39 +19,66 @@ document.addEventListener("DOMContentLoaded", () => {
                     problems[problems.length - 1];
 
                 latestDiv.innerHTML = `
-                    <strong>Latest</strong>
-                    <br>
-                    ${latest.title}
-                    <br><br>
+                    <strong>Latest</strong><br>
+                    ${latest.title}<br>
+                    <small>
+                        ${latest.track} > ${latest.subTrack}
+                    </small>
+                `;
+            } else {
+                latestDiv.innerHTML = `
+                    <strong>No problems tracked yet</strong>
                 `;
             }
 
-            const analytics = {};
+            // Analytics
+            const trackStats = {};
 
             problems.forEach(problem => {
 
                 const track =
                     problem.track || "Unknown";
 
-                analytics[track] =
-                    (analytics[track] || 0) + 1;
+                trackStats[track] =
+                    (trackStats[track] || 0) + 1;
             });
 
-            let html =
+            let analyticsHtml =
                 "<strong>Track Breakdown</strong><br><br>";
 
-            Object.entries(analytics)
+            Object.entries(trackStats)
+                .sort((a, b) => b[1] - a[1])
                 .forEach(([track, count]) => {
 
-                    html += `
+                    analyticsHtml += `
                         ${track}: ${count}<br>
                     `;
                 });
 
             document.getElementById(
                 "analytics"
-            ).innerHTML = html;
+            ).innerHTML = analyticsHtml;
 
+            // Recent Problems
+            const recentProblems =
+                [...problems]
+                    .reverse()
+                    .slice(0, 5);
+
+            let recentHtml =
+                "<strong>Recent Problems</strong><br><br>";
+
+            recentProblems.forEach(problem => {
+
+                recentHtml += `
+                    ✓ ${problem.title}<br>
+                `;
+            });
+
+            document.getElementById(
+                "recentProblems"
+            ).innerHTML = recentHtml;
         }
     );
+
 });
