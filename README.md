@@ -1,4 +1,4 @@
-# 🚀 DSA Companion
+# DSA Companion
 
 DSA Companion is a browser extension that helps developers track solved coding problems across multiple platforms.
 
@@ -164,7 +164,7 @@ Dashboard Updated
 
 - [ ] Track Difficulty
 - [ ] Track Categories
-- [ ] Track Language
+- [x] Track Language
 
 ### Phase 4 🚧
 
