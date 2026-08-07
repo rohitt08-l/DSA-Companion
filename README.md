@@ -19,7 +19,7 @@ Currently, the extension supports HackerRank and automatically tracks successful
   - Total solved problems
   - Latest solved problem
 
-### Planned Features 🚧
+### Planned Features 
 
 - Track difficulty (Easy, Medium, Hard)
 - Track categories and topics
@@ -92,7 +92,7 @@ Future:
 
 ---
 
-## 🚀 Getting Started
+##Getting Started
 
 ### Clone Repository
 
