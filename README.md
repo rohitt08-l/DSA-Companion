@@ -190,5 +190,3 @@ Associate AI / ML Engineer
 Building tools that improve learning, productivity, and developer workflows.
 
 ---
-
-⭐ If you like the project, consider starring the repository.
