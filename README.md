@@ -6,7 +6,7 @@ Currently, the extension supports HackerRank and automatically tracks successful
 
 ---
 
-## ✨ Features
+## Features
 
 ### Current Features ✅
 
@@ -35,7 +35,7 @@ Currently, the extension supports HackerRank and automatically tracks successful
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```text
 HackerRank Challenge
@@ -53,7 +53,7 @@ Popup Dashboard
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 DSA-Companion
@@ -126,7 +126,7 @@ DSA-Companion/extension
 
 ---
 
-## 📸 Current Workflow
+## Current Workflow
 
 ```text
 Open HackerRank Challenge
@@ -144,7 +144,7 @@ Dashboard Updated
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
 ### Phase 1 ✅
 
