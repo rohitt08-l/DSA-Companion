@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>DSA Companion</title>
     <link rel="stylesheet" href="popup.css">
+    <style>
+        /* Stats display – moved from inline to a CSS block */
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+        }
+        .stats div {
+            flex: 1;
+            min-width: 7rem;
+            text-align: center;
+        }
+    </style>
 </head>
-
 <body>
     <div class="container">
-
         <h2>DSA Companion</h2>
 
         <h1 id="count">0</h1>
-
         <p>Problems Solved</p>
+
+        <!-- Statistics -->
+        <div class="stats" id="stats">
+            <div id="currentStreak"></div>
+            <div id="longestStreak"></div>
+            <div id="activeDays"></div>
+        </div>
 
         <div id="latest"></div>
 
@@ -23,7 +43,6 @@
         <hr>
 
         <div id="recentProblems"></div>
-
     </div>
 
     <script src="popup.js"></script>
