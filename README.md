@@ -8,7 +8,7 @@ Currently, the extension supports HackerRank and automatically tracks successful
 
 ## Features
 
-### Current Features ✅
+### Current Features
 
 - Detect HackerRank challenge pages
 - Extract challenge information
@@ -49,6 +49,7 @@ Success Detection
 Local Storage
         ↓
 Popup Dashboard
+
 ```
 
 ---
